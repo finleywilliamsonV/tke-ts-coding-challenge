@@ -12,13 +12,13 @@ export class ChallengeOneComponent implements OnInit {
     public tests: any;
 
     /**
-   *
-   * @param inputs
-   */
+     *
+     * @param inputs
+     */
     public testFunction(i: number[]): number {
         /**
-     * Write code here!
-     */
+         * Write code here!
+         */
         const a = i.reduce(
             (acc, curr) => {
                 if (curr > 0) {
@@ -34,6 +34,5 @@ export class ChallengeOneComponent implements OnInit {
 
     ngOnInit() {
         this.tests = ChallengeRepo[0].tests;
-        console.log("tests:", this.tests);
     }
 }

@@ -7,15 +7,14 @@ import { AppComponent } from "./app.component";
 import { ChallengeWrapperComponent } from "./components/challenge-wrapper/challenge-wrapper.component";
 import { ChallengeOneComponent } from "./components/challenges/challenge-one/challenge-one.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
-const declarations = [
-    AppComponent,
-    ChallengeWrapperComponent,
-    ChallengeOneComponent,
-];
+import { AutoFormatPipe } from "./auto-format.pipe";
 
 @NgModule({
-  declarations: [...declarations],
+  declarations: [
+      AppComponent,
+    ChallengeWrapperComponent,
+    ChallengeOneComponent,
+    AutoFormatPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
