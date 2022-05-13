@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ChallengeRepo } from "src/app/challenge-data/challenge-repo.constant";
+import { ChallengeRepo } from "../../../challenge-data/challenge-repo.constant";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
