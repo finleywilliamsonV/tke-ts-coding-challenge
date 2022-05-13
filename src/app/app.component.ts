@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ChallengeRepo } from './challenge-data/challenge-repo.constant';
+import { IChallengeInfo } from './challenge-data/challenge.interface';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'tke-ts-coding-challenge';
+    challenges: IChallengeInfo[] = ChallengeRepo;
+    selectedChallenge: IChallengeInfo = this.challenges[0];
 }

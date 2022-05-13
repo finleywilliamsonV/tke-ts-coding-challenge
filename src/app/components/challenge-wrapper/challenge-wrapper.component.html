@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-body">
+        <!-- Challenge Content -->
+        <ng-content></ng-content>
+
+        <!-- Challenge Status -->
+        <hr>
+        <div
+            id="incompleteStatus"
+            *ngIf="!solved">
+            <span>INCOMPLETE</span>
+            <fa-icon
+                class="ms-2"
+                [icon]="faX"></fa-icon>
+        </div>
+        <div
+            id="completeStatus"
+            *ngIf="solved">
+            <span>COMPLETE</span>
+            <fa-icon
+                class="ms-2"
+                [icon]="faCheck"></fa-icon>
+        </div>
+    </div>
+</div>

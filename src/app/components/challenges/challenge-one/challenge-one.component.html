@@ -1,0 +1,6 @@
+<div
+  *ngFor="let test of tests"
+  [style.color]="testFunction(test.input) === test.output? 'green' : 'gray'"
+>
+  [{{test.input}}] <fa-icon class="mx-2" [icon]="faArrowRight"></fa-icon> ???
+</div>
