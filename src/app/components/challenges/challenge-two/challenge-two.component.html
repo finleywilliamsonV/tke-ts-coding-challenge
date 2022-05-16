@@ -1,6 +1,9 @@
 <div
-  *ngFor="let test of tests"
-  [style.color]="testFunction(test.input) === test.output? 'green' : 'gray'"
->
-  [{{test.input | autoFormat}}] <fa-icon class="mx-2" [icon]="faArrowRight"></fa-icon> ???
+    *ngFor="let test of tests"
+    [style.color]="testFunction(test.input) === test.output? 'green' : 'gray'">
+    [{{test.input | autoFormat}}]
+    <fa-icon
+        class="mx-2"
+        [icon]="faArrowRight"></fa-icon>
+    {{getChallengeOutput(testFunction(test.input)) | autoFormat}}
 </div>

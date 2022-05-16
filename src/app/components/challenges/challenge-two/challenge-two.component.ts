@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { ChallengeRepo } from '../../../challenge-data/challenge-repo.constant';
+import { getChallengeOutput } from '../challenges.functions';
 
 @Component({
     selector: 'app-challenge-two',
@@ -12,6 +13,7 @@ export class ChallengeTwoComponent implements OnInit {
     // member variables
     public faArrowRight = faArrowRight;
     public tests: any;
+    public getChallengeOutput = getChallengeOutput
 
     /**
      * On Init lifecycle hook.

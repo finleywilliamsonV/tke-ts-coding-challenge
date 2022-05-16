@@ -1,15 +1,19 @@
 import { Component, OnInit } from "@angular/core";
 import { ChallengeRepo } from "../../../challenge-data/challenge-repo.constant";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { getChallengeOutput } from '../challenges.functions';
 
 @Component({
-  selector: "app-challenge-one",
-  templateUrl: "./challenge-one.component.html",
-  styleUrls: ["./challenge-one.component.scss"]
+    selector: "app-challenge-one",
+    templateUrl: "./challenge-one.component.html",
+    styleUrls: ["./challenge-one.component.scss"]
 })
 export class ChallengeOneComponent implements OnInit {
+
+    // member variables
     public faArrowRight = faArrowRight;
     public tests: any;
+    public getChallengeOutput = getChallengeOutput
 
     /**
      *
