@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ChallengeRepo } from "../../../challenge-data/challenge-repo.constant";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { getChallengeOutput } from '../challenges.functions';
+import { ChallengeAttemptService } from '../../../challenge-attempt.service';
 
 @Component({
     selector: "app-challenge-one",
@@ -14,6 +15,8 @@ export class ChallengeOneComponent implements OnInit {
     public faArrowRight = faArrowRight;
     public tests: any;
     public getChallengeOutput = getChallengeOutput
+
+    constructor(private challengeAttemptService: ChallengeAttemptService) { }
 
     /**
      *
