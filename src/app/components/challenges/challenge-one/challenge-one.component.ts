@@ -19,21 +19,23 @@ export class ChallengeOneComponent implements OnInit {
      *
      * @param inputs
      */
-    public testFunction(i: number[]): number {
+    public testFunction(i: number[]): number | null {
         /**
          * Write code here!
          */
-        const a = i.reduce(
-            (acc, curr) => {
-                if (curr > 0) {
-                    acc += curr;
-                }
-                return acc;
-            },
-            0,
-        );
+        // const a = i.reduce(
+        //     (acc, curr) => {
+        //         if (curr > 0) {
+        //             acc += curr;
+        //         }
+        //         return acc;
+        //     },
+        //     0,
+        // );
 
-        return a;
+        // return a;
+
+        return null
     }
 
     ngOnInit() {

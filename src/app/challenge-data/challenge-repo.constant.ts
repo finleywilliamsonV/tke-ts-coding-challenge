@@ -6,8 +6,10 @@ export const ChallengeRepo: IChallengeInfo[] = [
         title: "Challenge #1 - Array Manipulation Part I",
         description: "Given an array of numbers, find the sum of all positive integers.",
         tests: [
-            { input: [-1, -2, -3, 4], output: 4 },
             { input: [-1, -2, -3, 6], output: 6 },
+            { input: [5, -10, 34, -1, -5, 9, 0, 14], output: 62 },
+            { input: [-2, 4, -6, 8], output: 12 },
+            { input: [0, 0, 0, 0], output: 0 },
         ],
     },
     {
