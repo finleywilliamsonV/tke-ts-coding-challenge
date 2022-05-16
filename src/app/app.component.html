@@ -32,6 +32,13 @@
                     <app-challenge-one id="challengeElement"></app-challenge-one>
                 </app-challenge-wrapper>
             </ng-container>
+
+            <!-- CHALLENGE TWO -->
+            <ng-container *ngIf="selectedChallenge?.challengeNumber == 2">
+                <app-challenge-wrapper>
+                    <app-challenge-two id="challengeElement"></app-challenge-two>
+                </app-challenge-wrapper>
+            </ng-container>
         </div>
     </div>
 </div>

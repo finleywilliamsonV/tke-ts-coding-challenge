@@ -9,7 +9,7 @@ export class AutoFormatPipe implements PipeTransform {
         if (isArray(value)) {
             return value.reduce(
                 (acc: string, curr: number, index: number) => {
-                    if (index > 0 && index < (value.length - 1)) {
+                    if (index > 0 && index <= (value.length - 1)) {
                         acc += ", ";
                     }
                     acc += curr;
