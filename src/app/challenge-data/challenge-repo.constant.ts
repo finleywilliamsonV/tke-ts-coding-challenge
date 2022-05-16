@@ -23,4 +23,16 @@ export const ChallengeRepo: IChallengeInfo[] = [
             { input: ["Hot dog", "Burger", "Pizza", "Steak"], output: "Pizza" },
         ],
     },
+    {
+        challengeNumber: 3,
+        title: "Challenge #3 - Anagram Hunter",
+        description: "Given an array of strings, find the string that is not an anagram of the others. A string is an anagram if it can be formed by rearranging the characters of another string. For example, the string 'abc' is an anagram of 'cba'. There will only be one string in the array that is not an anagram of the others. Solution should be case-insensitive.",
+        tests: [
+            { input: ["cat", "crate", "act", "tac"], output: "crate" },
+            { input: ["deal", "lead", "dale", "ale"], output: "ale" },
+            { input: ["Bread", "beard", "Bard", "debar"], output: "bard" },
+            { input: ["candy", "dandy", "cady", "day"], output: "cady" },
+            { input: ["aACA", "acAaA", "CCAA", "ACAbA"], output: "ACAbA" },
+        ],
+    },
 ];
