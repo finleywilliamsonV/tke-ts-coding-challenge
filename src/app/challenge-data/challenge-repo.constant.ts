@@ -2,7 +2,7 @@ import { IChallengeInfo } from "./challenge.interface";
 
 export const ChallengeRepo: IChallengeInfo[] = [
     {
-        challengeNumber: 1,
+        challengeIndex: 1,
         title: "Challenge #1 - Array Manipulation Part I",
         description: "Given an array of numbers, find the sum of all positive integers.",
         tests: [
@@ -13,7 +13,7 @@ export const ChallengeRepo: IChallengeInfo[] = [
         ],
     },
     {
-        challengeNumber: 2,
+        challengeIndex: 2,
         title: "Challenge #2 - Highest Scoring Word",
         description: "Given an array of words, find the highest scoring word. Each letter of a word scores points according to its position in the alphabet (a = 1, b = 2, ...). If two words score the same amount, return the first word in the array.",
         tests: [
@@ -24,7 +24,7 @@ export const ChallengeRepo: IChallengeInfo[] = [
         ],
     },
     {
-        challengeNumber: 3,
+        challengeIndex: 3,
         title: "Challenge #3 - Anagram Hunter",
         description: "Given an array of strings, find the string that is not an anagram of the others. A string is an anagram if it can be formed by rearranging the characters of another string. For example, the string 'abc' is an anagram of 'cba'. There will only be one string in the array that is not an anagram of the others. Solution should be case-insensitive.",
         tests: [

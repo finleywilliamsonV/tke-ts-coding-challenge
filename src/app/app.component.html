@@ -28,24 +28,24 @@
             </h5>
 
             <!-- CHALLENGE ONE -->
-            <ng-container *ngIf="selectedChallenge?.challengeNumber == 1">
+            <ng-container *ngIf="selectedChallenge?.challengeIndex == 1">
                 <app-challenge-wrapper>
-                    <app-challenge-one id="challengeElement"></app-challenge-one>
+                    <app-challenge-one [currentChallenge]="challenges[0]"></app-challenge-one>
                 </app-challenge-wrapper>
             </ng-container>
 
             <!-- CHALLENGE TWO -->
-            <ng-container *ngIf="selectedChallenge?.challengeNumber == 2">
+            <ng-container *ngIf="selectedChallenge?.challengeIndex == 2">
                 <app-challenge-wrapper>
-                    <app-challenge-two id="challengeElement"></app-challenge-two>
+                    <app-challenge-two [currentChallenge]="challenges[1]"></app-challenge-two>
                 </app-challenge-wrapper>
             </ng-container>
             
 
             <!-- CHALLENGE THREE -->
-            <!-- <ng-container *ngIf="selectedChallenge?.challengeNumber == 2">
+            <!-- <ng-container *ngIf="selectedChallenge?.challengeIndex == 2">
                 <app-challenge-wrapper>
-                    <app-challenge-two id="challengeElement"></app-challenge-two>
+                    <app-challenge-two [currentChallenge]="challenges[2]"></app-challenge-two>
                 </app-challenge-wrapper>
             </ng-container> -->
         </div>

@@ -30,6 +30,6 @@ export class AppComponent implements OnInit {
      * Stores the current challenge in local storage.
      */
     public storeCurrentChallenge(): void {
-        localStorage.setItem('currentChallenge', String(this.selectedChallenge.challengeNumber - 1));
+        localStorage.setItem('currentChallenge', String(this.selectedChallenge.challengeIndex - 1));
     }
 }
