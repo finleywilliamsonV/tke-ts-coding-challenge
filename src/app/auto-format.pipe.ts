@@ -1,11 +1,13 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { isArray } from "lodash";
+import { isArray, isNil } from 'lodash';
 
 @Pipe({
   name: 'autoFormat'
 })
 export class AutoFormatPipe implements PipeTransform {
-    transform(value: number[], ...args: unknown[]): unknown {
+    transform(value: unknown, ...args: unknown[]): unknown {
+
+        // if the value is an array, give it some spaces to make it a bit more readable
         if (isArray(value)) {
             return value.reduce(
                 (acc: string, curr: number, index: number) => {
@@ -17,7 +19,14 @@ export class AutoFormatPipe implements PipeTransform {
                 },
                 "" as string,
             );
+        
+        // else, if null or empty string, display ???
+        } else if (isNil(value) || value === '') {
+            return '???';
+
+        // else return the value
+        } else {
+            return value;
         }
-        return value;
     }
 }

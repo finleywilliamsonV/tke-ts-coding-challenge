@@ -7,8 +7,8 @@
                 class="form-control mt-4"
                 name="challengePicker"
                 id="#challengePicker"
-                (change)="storeCurrentChallenge()"
-                [(ngModel)]="selectedChallenge">
+                (change)="onCurrentChallengeChange()"
+                [(ngModel)]="currentChallenge">
                 <option
                     disabled
                     [value]="null">
@@ -23,29 +23,29 @@
 
             <h5
                 class="mt-4"
-                *ngIf="selectedChallenge">
-                {{selectedChallenge.description}}
+                *ngIf="currentChallenge">
+                {{currentChallenge.description}}
             </h5>
 
             <!-- CHALLENGE ONE -->
-            <ng-container *ngIf="selectedChallenge?.challengeIndex == 1">
+            <ng-container *ngIf="currentChallenge?.challengeIndex == 0">
                 <app-challenge-wrapper>
-                    <app-challenge-one [currentChallenge]="challenges[0]"></app-challenge-one>
+                    <app-challenge-one></app-challenge-one>
                 </app-challenge-wrapper>
             </ng-container>
 
             <!-- CHALLENGE TWO -->
-            <ng-container *ngIf="selectedChallenge?.challengeIndex == 2">
+            <ng-container *ngIf="currentChallenge?.challengeIndex == 1">
                 <app-challenge-wrapper>
-                    <app-challenge-two [currentChallenge]="challenges[1]"></app-challenge-two>
+                    <app-challenge-two></app-challenge-two>
                 </app-challenge-wrapper>
             </ng-container>
             
 
             <!-- CHALLENGE THREE -->
-            <!-- <ng-container *ngIf="selectedChallenge?.challengeIndex == 2">
+            <!-- <ng-container *ngIf="currentChallenge?.challengeIndex == 2">
                 <app-challenge-wrapper>
-                    <app-challenge-two [currentChallenge]="challenges[2]"></app-challenge-two>
+                    <app-challenge-two [currentChallenge]="challenges[currentChallenge.challengeIndex]"></app-challenge-two>
                 </app-challenge-wrapper>
             </ng-container> -->
         </div>

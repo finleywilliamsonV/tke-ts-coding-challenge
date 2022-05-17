@@ -8,15 +8,11 @@ export interface IChallengeInfo {
 }
 
 export interface IChallengeTest {
-    testId: number;
+    testIndex: number;
     input: any[];
     output: any;
 }
 
 export interface IChallengeComponent {
-
-    /**
-     * Challenge info passed in by the parent component.
-     */
     currentChallenge: IChallengeInfo;
 }

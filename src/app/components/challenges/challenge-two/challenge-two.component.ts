@@ -4,7 +4,7 @@ import { IChallengeComponent } from 'src/app/challenge-data/challenge.interface'
 import { ChallengeRepo } from '../../../challenge-data/challenge-repo.constant';
 import { getChallengeOutput } from '../challenges.functions';
 import { IChallengeInfo } from '../../../challenge-data/challenge.interface';
-import { ChallengeAttemptService, SubmissionRecord } from '../../../challenge-attempt.service';
+import { ChallengeAttemptService, SubmissionRecord, TestRecord } from '../../../challenge-attempt.service';
 import { tap } from 'rxjs';
 
 @Component({
@@ -60,29 +60,30 @@ export class ChallengeTwoComponent implements OnInit, IChallengeComponent {
      */
 
     // Input variables
-    @Input() currentChallenge!: IChallengeInfo;
+    public currentChallenge!: IChallengeInfo;
 
     // member variables
     public faArrowRight = faArrowRight;
-    public tests: any;
     public getChallengeOutput = getChallengeOutput
-    public submissionStatus!: SubmissionRecord;
+    public testRecord!: TestRecord[]
 
-    /**
-     * Constructor
-     */
-    constructor(private challengeAttemptService: ChallengeAttemptService) {
-        this.challengeAttemptService.submissionStatus$
+    constructor(private challengeAttemptService: ChallengeAttemptService) { }
+
+    ngOnInit() {
+
+        // subscribe to changes in current challenge
+        this.challengeAttemptService.currentChallenge$
             .pipe(
-                tap(submissionStatus => this.submissionStatus = submissionStatus)
+                tap((currentChallenge: IChallengeInfo) => this.currentChallenge = currentChallenge)
             )
             .subscribe()
-    }
+        
+        this.challengeAttemptService.submissionStatus$
+            .pipe(
+                tap(submissionStatus => this.testRecord = submissionStatus[this.currentChallenge.challengeIndex])
+            )
+            .subscribe()
 
-    /**
-     * On Init lifecycle hook.
-     */
-    ngOnInit(): void {
-        this.tests = this.currentChallenge.tests;
+        this.challengeAttemptService.submitSolution(this.currentChallenge.challengeIndex, this.testFunction)
     }
 }

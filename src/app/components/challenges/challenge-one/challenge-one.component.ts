@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ChallengeRepo } from "../../../challenge-data/challenge-repo.constant";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { getChallengeOutput } from '../challenges.functions';
-import { ChallengeAttemptService, SubmissionRecord } from '../../../challenge-attempt.service';
+import { ChallengeAttemptService, SubmissionRecord, TestRecord } from '../../../challenge-attempt.service';
 import { BehaviorSubject, tap } from 'rxjs';
 import { IChallengeComponent, IChallengeInfo, IChallengeTest } from 'src/app/challenge-data/challenge.interface';
 
@@ -17,7 +17,7 @@ export class ChallengeOneComponent implements OnInit, IChallengeComponent {
      * 
      * @param inputs
      */
-    public testFunction(i: number[]): number | null {
+    public testFunction(i: number[]) {
         /**
          * Write code here!
          */
@@ -30,10 +30,7 @@ export class ChallengeOneComponent implements OnInit, IChallengeComponent {
         //     },
         //     0,
         // );
-
         // return a;
-
-        return null
     }
 
 
@@ -42,23 +39,30 @@ export class ChallengeOneComponent implements OnInit, IChallengeComponent {
      */
 
     // Input variables
-    @Input() currentChallenge!: IChallengeInfo;
+    public currentChallenge!: IChallengeInfo;
 
     // member variables
     public faArrowRight = faArrowRight;
     public getChallengeOutput = getChallengeOutput
-    public tests!: IChallengeTest[]
-    public submissionStatus!: SubmissionRecord;
+    public testRecord!: TestRecord[]
 
-    constructor(private challengeAttemptService: ChallengeAttemptService) {
-        this.challengeAttemptService.submissionStatus$
-            .pipe(
-                tap(submissionStatus => this.submissionStatus = submissionStatus)
-            )
-            .subscribe()
-    }
+    constructor(private challengeAttemptService: ChallengeAttemptService) { }
 
     ngOnInit() {
-        this.tests = this.currentChallenge.tests;
+
+        // subscribe to changes in current challenge
+        this.challengeAttemptService.currentChallenge$
+            .pipe(
+                tap((currentChallenge: IChallengeInfo) => this.currentChallenge = currentChallenge)
+            )
+            .subscribe()
+        
+        this.challengeAttemptService.submissionStatus$
+            .pipe(
+                tap(submissionStatus => this.testRecord = submissionStatus[this.currentChallenge.challengeIndex])
+            )
+            .subscribe()
+
+        this.challengeAttemptService.submitSolution(this.currentChallenge.challengeIndex, this.testFunction)
     }
 }
