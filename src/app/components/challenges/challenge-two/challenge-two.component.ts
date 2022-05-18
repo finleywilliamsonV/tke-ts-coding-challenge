@@ -29,27 +29,27 @@ export class ChallengeTwoComponent implements OnInit, IChallengeComponent {
     /**
      * Test function - WRTIE CODE HERE
      */
-    public testFunction(input: string[]): string {
+    public testFunction = (input: string[]): string => {
 
         let highestScoringWord: string = ''
         let highestScore: number = -1;
 
-        // const getWordScore = (word: string): number => {
-        //     let wordScore = 0;
-        //     for (let i = 0; i < word.length; i++) {
-        //         wordScore += this.getLetterScore(word[i]);
-        //     }
-        //     return wordScore;
-        // }
+        const getWordScore = (word: string): number => {
+            let wordScore = 0;
+            for (let i = 0; i < word.length; i++) {
+                wordScore += this.getLetterScore(word[i]);
+            }
+            return wordScore;
+        }
 
-        // for (let i = 0; i < input.length; i++) {
-        //     const word = input[i];
-        //     const wordScore = getWordScore(word);
-        //     if (wordScore > highestScore) {
-        //         highestScoringWord = word;
-        //         highestScore = wordScore;
-        //     }
-        // }
+        for (let i = 0; i < input.length; i++) {
+            const word = input[i];
+            const wordScore = getWordScore(word);
+            if (wordScore > highestScore) {
+                highestScoringWord = word;
+                highestScore = wordScore;
+            }
+        }
 
         return highestScoringWord;
     }

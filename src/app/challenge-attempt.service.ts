@@ -29,8 +29,6 @@ export class ChallengeAttemptService {
      * Do we have some way to synchronously access the current challenge? Does that make sense? Still trying to get the check/X to show correctly
      */
 
-    bingus
-
     constructor() {
 
         /**
