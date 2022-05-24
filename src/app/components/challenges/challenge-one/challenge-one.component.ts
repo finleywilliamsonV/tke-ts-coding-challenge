@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ChallengeRepo } from "../../../challenge-data/challenge-repo.constant";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { getChallengeOutput } from '../challenges.functions';
-import { ChallengeAttemptService, SolutionRecord, IndividualTestData } from '../../../challenge-attempt.service';
-import { BehaviorSubject, tap } from 'rxjs';
-import { IChallengeComponent, IChallengeJson, IChallengeTest } from 'src/app/challenge-data/challenge.interface';
+import { ChallengeAttemptService, IndividualTestData } from '../../../challenge-attempt.service'
+import { Component, OnInit } from '@angular/core'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { getChallengeOutput } from '../challenges.functions'
+import { IChallengeComponent, IChallengeJson } from '../../../challenge-data/challenge.interface'
+import { tap } from 'rxjs'
 
 @Component({
     selector: "app-challenge-one",
@@ -45,7 +44,7 @@ export class ChallengeOneComponent implements OnInit, IChallengeComponent {
                 tap((currentChallenge: IChallengeJson) => this.currentChallenge = currentChallenge)
             )
             .subscribe()
-        
+
         this.challengeAttemptService.submissionStatus$
             .pipe(
                 tap(submissionStatus => this.testRecord = submissionStatus[this.currentChallenge.challengeIndex])

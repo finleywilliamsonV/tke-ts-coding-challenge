@@ -2,7 +2,7 @@ import { ChallengeAttemptService, IndividualTestData } from '../../../challenge-
 import { Component, OnInit } from '@angular/core'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { getChallengeOutput } from '../challenges.functions'
-import { IChallengeComponent } from 'src/app/challenge-data/challenge.interface'
+import { IChallengeComponent } from '../../../challenge-data/challenge.interface'
 import { IChallengeJson } from '../../../challenge-data/challenge.interface'
 import { tap } from 'rxjs'
 

@@ -1,11 +1,9 @@
-import { ChallengeAttemptService, IndividualTestData } from '../../../challenge-attempt.service';
+import { ChallengeAttemptService, IndividualTestData } from '../../../challenge-attempt.service'
 import { Component, OnInit } from '@angular/core'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { getChallengeOutput } from '../challenges.functions'
-import { IChallengeComponent } from 'src/app/challenge-data/challenge.interface'
-import { IChallengeJson } from '../../../challenge-data/challenge.interface'
+import { IChallengeComponent, IChallengeJson } from '../../../challenge-data/challenge.interface'
 import { tap } from 'rxjs'
-import { isEqual } from 'lodash';
 
 @Component({
     selector: 'app-challenge-three',
