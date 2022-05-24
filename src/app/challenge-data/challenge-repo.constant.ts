@@ -30,9 +30,8 @@ export const ChallengeRepo: IChallengeJson[] = [
         tests: [
             { testIndex: 0, input: ["cat", "crate", "act", "tac"], output: "crate" },
             { testIndex: 1, input: ["deal", "lead", "dale", "ale"], output: "ale" },
-            { testIndex: 2, input: ["Bread", "beard", "Bard", "debar"], output: "bard" },
-            { testIndex: 3, input: ["candy", "dandy", "cady", "day"], output: "cady" },
-            { testIndex: 4, input: ["aACA", "acAaA", "CCAA", "ACAbA"], output: "ACAbA" },
+            { testIndex: 2, input: ["Bread", "beard", "Bard", "debar"], output: "Bard" },
+            { testIndex: 3, input: ["aACA", "acAaA", "CCAA", "ACAbA"], output: "ACAbA" }
         ],
     },
 ];

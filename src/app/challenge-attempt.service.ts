@@ -3,14 +3,14 @@ import { BehaviorSubject } from 'rxjs';
 import { ChallengeRepo } from './challenge-data/challenge-repo.constant';
 import { IChallengeJson } from './challenge-data/challenge.interface';
 
-export interface TestRecord {
+export interface IndividualTestData {
     testIndex: number;
     testInput: any[];
     expectedOutput: any;
     userOutput: any;
 }
 
-export type SolutionRecord = Record<number, TestRecord[]>
+export type SolutionRecord = Record<number, IndividualTestData[]>
 
 @Injectable({
     providedIn: 'root'
@@ -64,6 +64,7 @@ export class ChallengeAttemptService {
      */
      public submitSolution(challengeIndex: number, userFunction: (input: any) => any) {
         const challengeTests = this.getChallenge(challengeIndex).tests
+        console.log('challengeTests:', challengeTests)
         for (let i = 0; i < challengeTests.length; i++) {
             const currentTest = challengeTests[i]
             const userTestResult = userFunction(currentTest.input)

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ChallengeRepo } from "../../../challenge-data/challenge-repo.constant";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { getChallengeOutput } from '../challenges.functions';
-import { ChallengeAttemptService, SolutionRecord, TestRecord } from '../../../challenge-attempt.service';
+import { ChallengeAttemptService, SolutionRecord, IndividualTestData } from '../../../challenge-attempt.service';
 import { BehaviorSubject, tap } from 'rxjs';
 import { IChallengeComponent, IChallengeJson, IChallengeTest } from 'src/app/challenge-data/challenge.interface';
 
@@ -21,16 +21,16 @@ export class ChallengeOneComponent implements OnInit, IChallengeComponent {
         /**
          * Write code here!
          */
-        // const a = i.reduce(
-        //     (acc, curr) => {
-        //         if (curr > 0) {
-        //             acc += curr;
-        //         }
-        //         return acc;
-        //     },
-        //     0,
-        // );
-        // return a;
+        const a = i.reduce(
+            (acc, curr) => {
+                if (curr > 0) {
+                    acc += curr;
+                }
+                return acc;
+            },
+            0,
+        );
+        return a;
     }
 
 
@@ -44,7 +44,7 @@ export class ChallengeOneComponent implements OnInit, IChallengeComponent {
     // member variables
     public faArrowRight = faArrowRight;
     public getChallengeOutput = getChallengeOutput
-    public testRecord!: TestRecord[]
+    public testRecord!: IndividualTestData[]
 
     constructor(private challengeAttemptService: ChallengeAttemptService) { }
 

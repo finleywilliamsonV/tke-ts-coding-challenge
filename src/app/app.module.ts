@@ -9,6 +9,7 @@ import { ChallengeOneComponent } from "./components/challenges/challenge-one/cha
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { AutoFormatPipe } from "./auto-format.pipe";
 import { ChallengeTwoComponent } from './components/challenges/challenge-two/challenge-two.component';
+import { ChallengeThreeComponent } from './components/challenges/challenge-three/challenge-three.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ChallengeTwoComponent } from './components/challenges/challenge-two/cha
     ChallengeWrapperComponent,
     ChallengeOneComponent,
     AutoFormatPipe,
-    ChallengeTwoComponent
+    ChallengeTwoComponent,
+    ChallengeThreeComponent
 ],
   imports: [
     BrowserModule,

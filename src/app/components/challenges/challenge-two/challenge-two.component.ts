@@ -1,11 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { IChallengeComponent } from 'src/app/challenge-data/challenge.interface';
-import { ChallengeRepo } from '../../../challenge-data/challenge-repo.constant';
-import { getChallengeOutput } from '../challenges.functions';
-import { IChallengeJson } from '../../../challenge-data/challenge.interface';
-import { ChallengeAttemptService, SolutionRecord, TestRecord } from '../../../challenge-attempt.service';
-import { tap } from 'rxjs';
+import { ChallengeAttemptService, IndividualTestData } from '../../../challenge-attempt.service'
+import { Component, OnInit } from '@angular/core'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { getChallengeOutput } from '../challenges.functions'
+import { IChallengeComponent } from 'src/app/challenge-data/challenge.interface'
+import { IChallengeJson } from '../../../challenge-data/challenge.interface'
+import { tap } from 'rxjs'
 
 @Component({
     selector: 'app-challenge-two',
@@ -65,7 +64,7 @@ export class ChallengeTwoComponent implements OnInit, IChallengeComponent {
     // member variables
     public faArrowRight = faArrowRight;
     public getChallengeOutput = getChallengeOutput
-    public testRecord!: TestRecord[]
+    public testRecord!: IndividualTestData[]
 
     constructor(private challengeAttemptService: ChallengeAttemptService) { }
 
