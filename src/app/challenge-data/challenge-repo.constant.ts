@@ -1,6 +1,6 @@
-import { IChallengeInfo } from "./challenge.interface";
+import { IChallengeJson } from "./challenge.interface";
 
-export const ChallengeRepo: IChallengeInfo[] = [
+export const ChallengeRepo: IChallengeJson[] = [
     {
         challengeIndex: 0,
         title: "Challenge #1 - Array Manipulation Part I",

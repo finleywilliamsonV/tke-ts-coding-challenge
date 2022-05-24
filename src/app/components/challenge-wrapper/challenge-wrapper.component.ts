@@ -1,8 +1,8 @@
 import { AfterContentInit, Component, OnDestroy, OnInit } from "@angular/core";
 import { faX, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { ChallengeAttemptService, SubmissionRecord } from '../../challenge-attempt.service';
+import { ChallengeAttemptService, SolutionRecord } from '../../challenge-attempt.service';
 import { combineLatestWith, Subscription, switchMap, takeUntil, tap, zip } from 'rxjs';
-import { IChallengeInfo } from '../../challenge-data/challenge.interface';
+import { IChallengeJson } from '../../challenge-data/challenge.interface';
 
 @Component({
     selector: "app-challenge-wrapper",
@@ -28,9 +28,8 @@ export class ChallengeWrapperComponent implements OnInit, OnDestroy {
         this.submissionSub = this.challengeAttemptService.currentChallenge$
             .pipe(
                 combineLatestWith(this.challengeAttemptService.submissionStatus$),
-                tap((combination: [IChallengeInfo, SubmissionRecord]) => {
+                tap((combination: [IChallengeJson, SolutionRecord]) => {
                     this.solved = this.challengeAttemptService.isChallengeSolved(combination[0].challengeIndex)
-                    console.log('this.solved:', this.solved)
                 })
             )
             .subscribe()

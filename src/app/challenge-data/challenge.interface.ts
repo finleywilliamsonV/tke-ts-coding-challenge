@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 
-export interface IChallengeInfo {
+export interface IChallengeJson {
     title: string;
     description: string;
     challengeIndex: number;
@@ -14,5 +14,5 @@ export interface IChallengeTest {
 }
 
 export interface IChallengeComponent {
-    currentChallenge: IChallengeInfo;
+    currentChallenge: IChallengeJson;
 }

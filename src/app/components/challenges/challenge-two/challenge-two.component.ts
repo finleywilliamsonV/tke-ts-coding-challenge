@@ -3,8 +3,8 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { IChallengeComponent } from 'src/app/challenge-data/challenge.interface';
 import { ChallengeRepo } from '../../../challenge-data/challenge-repo.constant';
 import { getChallengeOutput } from '../challenges.functions';
-import { IChallengeInfo } from '../../../challenge-data/challenge.interface';
-import { ChallengeAttemptService, SubmissionRecord, TestRecord } from '../../../challenge-attempt.service';
+import { IChallengeJson } from '../../../challenge-data/challenge.interface';
+import { ChallengeAttemptService, SolutionRecord, TestRecord } from '../../../challenge-attempt.service';
 import { tap } from 'rxjs';
 
 @Component({
@@ -60,7 +60,7 @@ export class ChallengeTwoComponent implements OnInit, IChallengeComponent {
      */
 
     // Input variables
-    public currentChallenge!: IChallengeInfo;
+    public currentChallenge!: IChallengeJson;
 
     // member variables
     public faArrowRight = faArrowRight;
@@ -74,7 +74,7 @@ export class ChallengeTwoComponent implements OnInit, IChallengeComponent {
         // subscribe to changes in current challenge
         this.challengeAttemptService.currentChallenge$
             .pipe(
-                tap((currentChallenge: IChallengeInfo) => this.currentChallenge = currentChallenge)
+                tap((currentChallenge: IChallengeJson) => this.currentChallenge = currentChallenge)
             )
             .subscribe()
         

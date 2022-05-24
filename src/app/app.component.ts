@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChallengeRepo } from './challenge-data/challenge-repo.constant';
-import { IChallengeInfo } from './challenge-data/challenge.interface';
+import { IChallengeJson } from './challenge-data/challenge.interface';
 import { ChallengeAttemptService } from './challenge-attempt.service';
 import { tap } from 'rxjs';
 
@@ -12,8 +12,8 @@ import { tap } from 'rxjs';
 export class AppComponent implements OnInit {
 
     // member variables
-    public challenges: IChallengeInfo[] = ChallengeRepo;
-    public currentChallenge: IChallengeInfo = this.challenges[0];
+    public challenges: IChallengeJson[] = ChallengeRepo;
+    public currentChallenge: IChallengeJson = this.challenges[0];
 
     /**
      * Constructor
@@ -27,9 +27,8 @@ export class AppComponent implements OnInit {
     public ngOnInit(): void {
         this.challengeAttemptService.currentChallenge$
             .pipe(
-                tap((cc) => console.log('currentChallengeChanged to', cc.challengeIndex)),
-                tap((currentChallenge: IChallengeInfo) => this.currentChallenge = currentChallenge),
-                tap((currentChallenge: IChallengeInfo) => localStorage.setItem('currentChallengeIndex', String(currentChallenge.challengeIndex)))
+                tap((currentChallenge: IChallengeJson) => this.currentChallenge = currentChallenge),
+                tap((currentChallenge: IChallengeJson) => localStorage.setItem('currentChallengeIndex', String(currentChallenge.challengeIndex)))
             ).subscribe()
     }
 

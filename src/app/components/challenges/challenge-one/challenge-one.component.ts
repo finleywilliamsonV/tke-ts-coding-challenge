@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ChallengeRepo } from "../../../challenge-data/challenge-repo.constant";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { getChallengeOutput } from '../challenges.functions';
-import { ChallengeAttemptService, SubmissionRecord, TestRecord } from '../../../challenge-attempt.service';
+import { ChallengeAttemptService, SolutionRecord, TestRecord } from '../../../challenge-attempt.service';
 import { BehaviorSubject, tap } from 'rxjs';
-import { IChallengeComponent, IChallengeInfo, IChallengeTest } from 'src/app/challenge-data/challenge.interface';
+import { IChallengeComponent, IChallengeJson, IChallengeTest } from 'src/app/challenge-data/challenge.interface';
 
 @Component({
     selector: "app-challenge-one",
@@ -39,7 +39,7 @@ export class ChallengeOneComponent implements OnInit, IChallengeComponent {
      */
 
     // Input variables
-    public currentChallenge!: IChallengeInfo;
+    public currentChallenge!: IChallengeJson;
 
     // member variables
     public faArrowRight = faArrowRight;
@@ -53,7 +53,7 @@ export class ChallengeOneComponent implements OnInit, IChallengeComponent {
         // subscribe to changes in current challenge
         this.challengeAttemptService.currentChallenge$
             .pipe(
-                tap((currentChallenge: IChallengeInfo) => this.currentChallenge = currentChallenge)
+                tap((currentChallenge: IChallengeJson) => this.currentChallenge = currentChallenge)
             )
             .subscribe()
         

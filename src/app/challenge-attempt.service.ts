@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ChallengeRepo } from './challenge-data/challenge-repo.constant';
-import { IChallengeInfo, IChallengeTest } from './challenge-data/challenge.interface';
+import { IChallengeJson } from './challenge-data/challenge.interface';
 
 export interface TestRecord {
     testIndex: number;
@@ -10,18 +10,18 @@ export interface TestRecord {
     userOutput: any;
 }
 
-export type SubmissionRecord = Record<number, TestRecord[]>
+export type SolutionRecord = Record<number, TestRecord[]>
 
 @Injectable({
     providedIn: 'root'
 })
 export class ChallengeAttemptService {
 
-    private challengeRepo: IChallengeInfo[] = ChallengeRepo
-    private submissionTracker: SubmissionRecord = {}
+    private challengeRepo: IChallengeJson[] = ChallengeRepo
+    private submissionTracker: SolutionRecord = {}
 
-    public submissionStatus$: BehaviorSubject<SubmissionRecord>
-    public currentChallenge$: BehaviorSubject<IChallengeInfo>
+    public submissionStatus$: BehaviorSubject<SolutionRecord>
+    public currentChallenge$: BehaviorSubject<IChallengeJson>
 
     constructor() {
 
@@ -50,9 +50,9 @@ export class ChallengeAttemptService {
         // initialize the currentChallenge$ subject
         const currentChallengeIndex: string | null = localStorage.getItem('currentChallengeIndex');
         if (currentChallengeIndex) {
-            this.currentChallenge$ = new BehaviorSubject<IChallengeInfo>(this.challengeRepo[parseInt(currentChallengeIndex, 10)])
+            this.currentChallenge$ = new BehaviorSubject<IChallengeJson>(this.challengeRepo[parseInt(currentChallengeIndex, 10)])
         } else {
-            this.currentChallenge$ = new BehaviorSubject<IChallengeInfo>(this.challengeRepo[0])
+            this.currentChallenge$ = new BehaviorSubject<IChallengeJson>(this.challengeRepo[0])
         }
     }
     
@@ -75,7 +75,7 @@ export class ChallengeAttemptService {
     /**
      * Returns the challenge at the given index
      */
-    private getChallenge(challengeIndex: number): IChallengeInfo {
+    private getChallenge(challengeIndex: number): IChallengeJson {
         return this.challengeRepo.find(challenge => challenge.challengeIndex === challengeIndex) ?? this.challengeRepo[0]
     }
 
