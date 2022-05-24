@@ -1,7 +1,7 @@
-import { AfterContentInit, Component, OnInit } from "@angular/core";
+import { AfterContentInit, Component, OnDestroy, OnInit } from "@angular/core";
 import { faX, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { ChallengeAttemptService, SubmissionRecord } from '../../challenge-attempt.service';
-import { combineLatestWith, switchMap, tap, zip } from 'rxjs';
+import { combineLatestWith, Subscription, switchMap, takeUntil, tap, zip } from 'rxjs';
 import { IChallengeInfo } from '../../challenge-data/challenge.interface';
 
 @Component({
@@ -9,7 +9,7 @@ import { IChallengeInfo } from '../../challenge-data/challenge.interface';
     templateUrl: "./challenge-wrapper.component.html",
     styleUrls: ["./challenge-wrapper.component.scss"]
 })
-export class ChallengeWrapperComponent implements OnInit {
+export class ChallengeWrapperComponent implements OnInit, OnDestroy {
 
     // icons
     faX = faX;
@@ -18,21 +18,25 @@ export class ChallengeWrapperComponent implements OnInit {
     // whether the challenge is solved
     solved: boolean = true;
 
+    // hold subscription for cleanup
+    submissionSub!: Subscription
+
     constructor(private challengeAttemptService: ChallengeAttemptService) { }
 
     ngOnInit(): void {
-        find me
-        // this.challengeAttemptService.submissionStatus$
-        //     .pipe(
-        //         switchMap(() => )
-        //     )
-        this.challengeAttemptService.currentChallenge$
+
+        this.submissionSub = this.challengeAttemptService.currentChallenge$
             .pipe(
-                tap((currentChallenge: IChallengeInfo) => {
-                    this.solved = this.challengeAttemptService.isChallengeSolved(currentChallenge.challengeIndex)
+                combineLatestWith(this.challengeAttemptService.submissionStatus$),
+                tap((combination: [IChallengeInfo, SubmissionRecord]) => {
+                    this.solved = this.challengeAttemptService.isChallengeSolved(combination[0].challengeIndex)
                     console.log('this.solved:', this.solved)
                 })
             )
             .subscribe()
+    }
+
+    ngOnDestroy(): void {
+        this.submissionSub?.unsubscribe()
     }
 }

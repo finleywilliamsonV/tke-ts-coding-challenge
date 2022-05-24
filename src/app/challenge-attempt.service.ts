@@ -5,9 +5,9 @@ import { IChallengeInfo, IChallengeTest } from './challenge-data/challenge.inter
 
 export interface TestRecord {
     testIndex: number;
-    input: any[];
-    output: any;
-    userSubmission: any;
+    testInput: any[];
+    expectedOutput: any;
+    userOutput: any;
 }
 
 export type SubmissionRecord = Record<number, TestRecord[]>
@@ -22,12 +22,6 @@ export class ChallengeAttemptService {
 
     public submissionStatus$: BehaviorSubject<SubmissionRecord>
     public currentChallenge$: BehaviorSubject<IChallengeInfo>
-    
-
-    /**
-     * NEXT:
-     * Do we have some way to synchronously access the current challenge? Does that make sense? Still trying to get the check/X to show correctly
-     */
 
     constructor() {
 
@@ -42,9 +36,9 @@ export class ChallengeAttemptService {
                 const currentTest = challenge.tests[j]
                 this.submissionTracker[challenge.challengeIndex].push({
                     testIndex: currentTest.testIndex,
-                    input: currentTest.input,
-                    output: currentTest.output,
-                    userSubmission: null
+                    testInput: currentTest.input,
+                    expectedOutput: currentTest.output,
+                    userOutput: null
                 })
             }
         }
@@ -61,22 +55,38 @@ export class ChallengeAttemptService {
             this.currentChallenge$ = new BehaviorSubject<IChallengeInfo>(this.challengeRepo[0])
         }
     }
+    
 
-    public getChallenge(challengeIndex: number): IChallengeInfo {
+    /**
+     * Tests a given funciton against a given challenge
+     * @param challengeIndex The challenge number to get the test results for
+     * @param userFunction The function to test
+     */
+     public submitSolution(challengeIndex: number, userFunction: (input: any) => any) {
+        const challengeTests = this.getChallenge(challengeIndex).tests
+        for (let i = 0; i < challengeTests.length; i++) {
+            const currentTest = challengeTests[i]
+            const userTestResult = userFunction(currentTest.input)
+            this.setChallenge(challengeIndex, currentTest.testIndex, userTestResult)
+        }
+        this.submissionStatus$.next(this.submissionTracker)
+    }
+
+    /**
+     * Returns the challenge at the given index
+     */
+    private getChallenge(challengeIndex: number): IChallengeInfo {
         return this.challengeRepo.find(challenge => challenge.challengeIndex === challengeIndex) ?? this.challengeRepo[0]
     }
 
-    public getChallengeTests(challengeIndex: number): IChallengeTest[] {
-        return this.getChallenge(challengeIndex).tests
-    }
-
-    public setChallenge(challengeIndex: number, testIndex: number, userSubmission: any) {
-        this.submissionTracker[challengeIndex][testIndex].userSubmission = userSubmission
-    }
-
-    /** */
-    public isTestPassed(challengeIndex: number, testIndex: number): boolean {
-        return this.submissionTracker[challengeIndex][testIndex].userSubmission === this.submissionTracker[challengeIndex][testIndex].output
+    /**
+     * Sets a 
+     * @param challengeIndex 
+     * @param testIndex 
+     * @param userSubmission 
+     */
+    private setChallenge(challengeIndex: number, testIndex: number, userSubmission: any) {
+        this.submissionTracker[challengeIndex][testIndex].userOutput = userSubmission
     }
 
     /**
@@ -84,20 +94,6 @@ export class ChallengeAttemptService {
      * @param challengeIndex The challenge number to get the test results for
      */
     public isChallengeSolved(challengeIndex: number): boolean {
-        return this.submissionTracker[challengeIndex].every(test => test.userSubmission === test.output)
-    }
-
-    /**
-     * Tests a given funciton against a given challenge
-     * @param challengeIndex The challenge number to get the test results for
-     * @param userSubmission The function to test
-     */
-    public submitSolution(challengeIndex: number, userSubmission: (input: any) => any) {
-        const challengeTests = this.getChallengeTests(challengeIndex)
-        for (let i = 0; i < challengeTests.length; i++) {
-            const currentTest = challengeTests[i]
-            const userTestResult = userSubmission(currentTest.input)
-            this.setChallenge(challengeIndex, currentTest.testIndex, userTestResult)
-        }
+        return this.submissionTracker[challengeIndex].every(test => test.userOutput === test.expectedOutput)
     }
 }

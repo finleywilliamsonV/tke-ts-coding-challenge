@@ -1,9 +1,9 @@
 <div
     *ngFor="let test of testRecord; index as i"
-    [style.color]="testFunction(test.input) === test.output? 'green' : 'gray'">
-    [{{test.input | autoFormat}}]
+    [style.color]="testFunction(test.testInput) === test.expectedOutput ? 'green' : 'gray'">
+    [{{test.testInput | autoFormat}}]
     <fa-icon
         class="mx-2"
         [icon]="faArrowRight"></fa-icon>
-    {{test.userSubmission | autoFormat}}
+    {{test.userOutput | autoFormat}}
 </div>
