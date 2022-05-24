@@ -15,24 +15,17 @@ import { isEqual } from 'lodash';
 export class ChallengeThreeComponent implements OnInit, IChallengeComponent {
 
 
-    public testFunction(inputs: string[]): string | void {
-
-
-
-        const testSet = new Set(inputs[0].toLowerCase().split(''))
-        console.log('\ntestSet:', testSet)
-
-        for (let i = 1; i < inputs.length; i++) {
-
-            const newSet = new Set(inputs[i].toLowerCase().split(''))
-            console.log('newSet:', newSet)
-
-            if (!isEqual(testSet, newSet)) {
-                console.log('inputs[i]:', inputs[i])
-                return inputs[i]
-            }
-
-        }
+    /**
+     * Given an array of strings, find the string that is not an anagram of the others.
+     * - A string is an anagram if it can be formed by rearranging the characters of another string.
+     * - For example, the string 'abc' is an anagram of 'cba'.
+     * - There will only be one string in the array that is not an anagram of the others.
+     * - Solution should be case-insensitive.
+     */
+    public testFunction(input: string[]) {
+        /**
+         * Write code here!
+         */
     }
 
 

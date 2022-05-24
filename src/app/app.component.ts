@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChallengeRepo } from './challenge-data/challenge-repo.constant';
 import { IChallengeJson } from './challenge-data/challenge.interface';
 import { ChallengeAttemptService } from './challenge-attempt.service';
-import { tap } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',

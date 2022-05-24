@@ -64,7 +64,6 @@ export class ChallengeAttemptService {
      */
      public submitSolution(challengeIndex: number, userFunction: (input: any) => any) {
         const challengeTests = this.getChallenge(challengeIndex).tests
-        console.log('challengeTests:', challengeTests)
         for (let i = 0; i < challengeTests.length; i++) {
             const currentTest = challengeTests[i]
             const userTestResult = userFunction(currentTest.input)

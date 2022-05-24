@@ -26,31 +26,15 @@ export class ChallengeTwoComponent implements OnInit, IChallengeComponent {
     }
 
     /**
-     * Test function - WRTIE CODE HERE
+     * Given an array of words, find the highest scoring word.
+     * - Each letter of a word scores points according to its position in the alphabet (a = 1, b = 2, ...)
+     * - If two words score the same amount, return the first word in the array.
+     * - You are given the 'getLetterScore()' function above.
      */
-    public testFunction = (input: string[]): string => {
-
-        let highestScoringWord: string = ''
-        let highestScore: number = -1;
-
-        const getWordScore = (word: string): number => {
-            let wordScore = 0;
-            for (let i = 0; i < word.length; i++) {
-                wordScore += this.getLetterScore(word[i]);
-            }
-            return wordScore;
-        }
-
-        for (let i = 0; i < input.length; i++) {
-            const word = input[i];
-            const wordScore = getWordScore(word);
-            if (wordScore > highestScore) {
-                highestScoringWord = word;
-                highestScore = wordScore;
-            }
-        }
-
-        return highestScoringWord;
+    public testFunction = (input: string[]) => {
+        /**
+         * Write code here!
+         */
     }
 
 
@@ -76,7 +60,7 @@ export class ChallengeTwoComponent implements OnInit, IChallengeComponent {
                 tap((currentChallenge: IChallengeJson) => this.currentChallenge = currentChallenge)
             )
             .subscribe()
-        
+
         this.challengeAttemptService.submissionStatus$
             .pipe(
                 tap(submissionStatus => this.testRecord = submissionStatus[this.currentChallenge.challengeIndex])

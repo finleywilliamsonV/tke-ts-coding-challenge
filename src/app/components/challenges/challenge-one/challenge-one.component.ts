@@ -14,23 +14,12 @@ import { IChallengeComponent, IChallengeJson, IChallengeTest } from 'src/app/cha
 export class ChallengeOneComponent implements OnInit, IChallengeComponent {
 
     /**
-     * 
-     * @param inputs
+     * Given an array of numbers, find the sum of all positive integers.
      */
-    public testFunction(i: number[]) {
+    public testFunction(inputs: number[]) {
         /**
          * Write code here!
          */
-        const a = i.reduce(
-            (acc, curr) => {
-                if (curr > 0) {
-                    acc += curr;
-                }
-                return acc;
-            },
-            0,
-        );
-        return a;
     }
 
 
